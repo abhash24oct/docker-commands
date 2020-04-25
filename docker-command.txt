@@ -1,0 +1,63 @@
+    docker container run --publish 80:80 --detach --name MyFirstDockerWebServer nginx
+
+    docker container ls 
+    -->Only running containers
+
+    docker container ls -a
+    -->All the containers
+
+    docker container rm 212 23d ds2
+    --> Remove the container
+
+    docker container rm -f 2112 21
+    -->Remove a running container
+
+    docker container stop MyFirstDockerWebServer
+
+    docker container top MyFirstDockerWebServer
+    -->Running process in the container
+
+    docker container start mongo
+    --> start a stopped container which is already downloaded
+
+    docker container logs -f MyFirstDb
+    --> To see the logs if the image is running in detach mode  , -f is following the logs like tail
+
+     docker image  ls
+     --> See the available docker image
+
+    docker container inspect nginx
+    -->To see more details regarding the container
+
+    docker container stats
+    --> Live metrics for each container      
+
+    $docker image ls
+    --> List the images 
+
+    $docker pull nginx:latest
+    --> Pull the image with tag latest
+
+    $docker image history nginx
+    -->Show the layer of the image and the chnages 
+
+    $docker image inspect nginx
+    --> Details of image like tags , sha of each parts etc
+
+    $ docker image tag nginx abhash24oct/nginx
+    --> Usage:  docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+        Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE ,, (Oranisation nam eis required for a custom image)
+
+    $docker push abhash24oct/nginx
+    --> Needs login docker login
+
+    $docker image tag abhash24oct/nginx abhash24oct/nginx:testing
+
+    $docker push abhash24oct/nginx:testing
+    > Since it is the same image , just a tag is pushed
+
+    $
+
+    
+
+    
