@@ -1,0 +1,44 @@
+$ docker container run -it -p 8089:80 httpd bash
+--> GO inside the apache container and run the command bash
+
+$ docker container exec -it webhost
+-->Go insid ethe running container
+
+$ docker network ls
+--> List the network
+
+$ docker network inspect bridge
+--> Details of the default network (bridge)
+
+$ docker network create MyNet
+--> create A new network
+
+$ docker network create -d host Mynet2
+--> (Error response from daemon: only one instance of "host" network is allowed ,) Using -d option we can give the driver name for the host , but it only one driver is allowed for host and null
+
+
+$ docker container run -p 8080:80 --name apache -d --network MyNet httpd 
+--> If we have to run a container in non-default network 
+
+$ docker network inspect --format "{{.Containers}}"  MyNet
+
+docker network connect MyNet webhost
+--> Add wbhost to MyNet network
+
+$ docker network disconnect MyNet webhost
+-->Remove from the MyNet
+
+$ docker container run -p 8070:80 --name n2 -d  nginx:alpine --network MyNet
+--> Run a new nginx in MyNet network
+
+$ docker container run -p 8070:80 --name n4 -d  --network MyNet nginx:alpinea
+
+The containers can talk tow each others in the if in same network now , apache and n4 are in same network so n4 can ping apache
+
+$ docker container exec -it n4 ping apache 
+PING apache (172.19.0.2): 56 data bytes
+64 bytes from 172.19.0.2: seq=0 ttl=64 time=0.118 ms
+64 bytes from 172.19.0.2: seq=1 ttl=64 time=0.110 ms
+
+$docker container run --rm -it centos:7 
+--> Remove the container as well once we exit from the interactive sesson
